@@ -21,7 +21,6 @@
             background-color: #121212;
         }
 
-        /* Видео на фон */
         .video-background {
             position: absolute;
             top: 0;
@@ -32,7 +31,6 @@
             z-index: -1;
         }
 
-        /* Первая био-карта */
         .bio-card {
             background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
@@ -126,7 +124,6 @@
             color: #ff9f00;
         }
 
-        /* Всплывающие подсказки при наведении */
         .social-icons a .tooltip {
             position: absolute;
             bottom: -35px;
@@ -148,7 +145,6 @@
             opacity: 1;
         }
 
-        /* Музыкальный плеер */
         .music-player {
             width: 80%;
             max-width: 500px;
@@ -221,7 +217,6 @@
             color: #ffb732;
         }
 
-        /* Вторая био-карта */
         .bio-card-details {
             background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
@@ -231,7 +226,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
             position: absolute;
             top: 50%;
-            right: -500px; /* Изначально скрыта справа */
+            right: -500px; 
             transform: translateY(-50%);
             transition: right 0.5s ease-in-out;
             backdrop-filter: blur(8px);
@@ -247,7 +242,6 @@
             margin: 5px 0;
         }
 
-        /* Кнопка для открытия второй карты */
         .show-details-btn {
             background: none;
             border: none;
@@ -261,7 +255,6 @@
             transform: scale(1.1);
         }
 
-        /* Третья кнопка */
         .extra-btn {
             background: none;
             border: none;
@@ -277,7 +270,6 @@
             transform: scale(1.1);
         }
 
-        /* Корректировка иконок */
         .social-icons a {
             font-size: 32px;
             padding: 10px;
@@ -286,17 +278,15 @@
     </style>
 </head>
 <body>
-    <!-- Видео фон -->
     <video autoplay muted loop class="video-background">
         <source src="videos/background-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!-- Первая био-карта -->
     <div class="bio-card" id="bioCard">
         <img src="images/изображение2.png" alt="Profile Image">
         <h1>root@hayna</h1>
-        <p>Hello, I am Hayna. Owner of dexrise.fun >3</p>
+        <p>Hello, I am Hayna. Owner of MyStydio.fun >3</p>
         
         <div class="social-icons">
             <a href="https://t.me/Unnveryy" class="telegram" target="_blank"><i class="fab fa-telegram-plane"></i><span class="tooltip">Telegram</span></a>
@@ -305,7 +295,6 @@
         </div>
     </div>
 
-    <!-- Вторая био-карта -->
     <div class="bio-card-details" id="bioCardDetails">
         <h2>About Me</h2>
         <p><strong>Name:</strong> Hayna</p>
@@ -321,7 +310,6 @@
         </button>
     </div>
 
-    <!-- Музыкальный плеер -->
     <div class="music-player" id="musicPlayer">
         <img src="images/song-image.jpg" alt="Song Image">
         <div class="song-info">
@@ -335,7 +323,6 @@
         </div>
     </div>
 
-    <!-- Аудио -->
     <audio id="audioPlayer" src="songs/sample-song.mp3"></audio>
 
     <script>
@@ -345,7 +332,6 @@
     const songProgress = document.getElementById('songProgress');
     const bioCard = document.getElementById('bioCard');
 
-    // Воспроизведение / пауза музыки
     playPauseBtn.addEventListener('click', () => {
         if (audioPlayer.paused) {
             audioPlayer.play();
@@ -356,7 +342,6 @@
         }
     });
 
-    // Включение / отключение звука
     muteBtn.addEventListener('click', () => {
         if (audioPlayer.muted) {
             audioPlayer.muted = false;
@@ -367,7 +352,6 @@
         }
     });
 
-    // Эффект наклона при наведении на био-карту
     bioCard.addEventListener('mousemove', (event) => {
         const cardRect = bioCard.getBoundingClientRect();
         const cardCenterX = cardRect.left + cardRect.width / 2;
@@ -376,8 +360,8 @@
         const deltaX = event.clientX - cardCenterX;
         const deltaY = event.clientY - cardCenterY;
 
-        const rotateX = deltaY / 20; // Настройте силу наклона по Y
-        const rotateY = -deltaX / 20; // Настройте силу наклона по X
+        const rotateX = deltaY / 20;
+        const rotateY = -deltaX / 20; 
 
         bioCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
@@ -386,19 +370,16 @@
         bioCard.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
 
-        // Обновление ползунка прогресса
         audioPlayer.addEventListener('timeupdate', () => {
             const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
             songProgress.value = progress;
         });
 
-        // Перемотка песни
         songProgress.addEventListener('input', () => {
             const progress = songProgress.value;
             audioPlayer.currentTime = (progress / 100) * audioPlayer.duration;
         });
 
-        // Открытие второй био-карты
         const showDetailsBtn = document.getElementById('showDetailsBtn');
         const hideDetailsBtn = document.getElementById('hideDetailsBtn');
         const bioCardDetails = document.getElementById('bioCardDetails');
